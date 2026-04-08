@@ -10,39 +10,39 @@ interface PricingTier {
 
 const tiers: PricingTier[] = [
   {
-    name: "СТАРТ",
-    price: "1 490 ₽",
-    description: "Для тех, кому нужен второй взгляд.",
+    name: "ПОКУПАТЕЛЬ",
+    price: "Бесплатно",
+    description: "Для обычных покупок без ограничений.",
     features: [
-      "500 ИИ-черновиков в месяц",
-      "Стандартная библиотека тонов",
-      "Интеграция с Gmail",
-      "Chrome-расширение",
-      "История контекста 7 дней",
+      "Доступ ко всему каталогу",
+      "Безопасная оплата",
+      "Отслеживание заказов",
+      "Стандартная доставка",
+      "Поддержка 24/7",
     ],
   },
   {
-    name: "ПРО",
-    price: "3 990 ₽",
-    description: "Для профессионалов, которые ценят время.",
+    name: "PREMIUM",
+    price: "990 ₽",
+    description: "Для активных покупателей с привилегиями.",
     features: [
-      "Безлимитные ИИ-черновики",
-      "Обучение собственному тону",
-      "Все интеграции",
-      "Приоритетная поддержка",
-      "История контекста 30 дней",
+      "Всё из базового",
+      "Приоритетная доставка",
+      "Эксклюзивные скидки до 20%",
+      "Ранний доступ к акциям",
+      "Личный менеджер",
     ],
     popular: true,
   },
   {
-    name: "КОМАНДА",
-    price: "7 990 ₽",
-    description: "Для команд, работающих на масштабе.",
+    name: "ПОСТАВЩИК",
+    price: "4 990 ₽",
+    description: "Для бизнеса: размещайте и продавайте товары.",
     features: [
-      "Всё из Про",
-      "Командная работа",
-      "Админ-панель",
-      "SSO и SAML",
+      "Размещение до 10 000 товаров",
+      "Аналитика продаж",
+      "Инструменты продвижения",
+      "API-интеграция",
       "Персональный менеджер",
     ],
   },
@@ -55,17 +55,17 @@ const PricingSection = () => {
         <div className="text-center mb-16">
           <span className="text-xs font-mono text-muted-foreground tracking-wider">ТАРИФЫ</span>
           <h2 className="font-serif text-4xl md:text-5xl mt-4 mb-4">
-            Пишите как профи,
+            Для покупателей
             <br />
-            платите разумно
+            и поставщиков
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[-2deg] border border-amber-100">
-              <span className="text-xs font-mono">БЕСПЛАТНЫЙ_ПРОБНЫЙ</span>
+              <span className="text-xs font-mono">СТАРТ_БЕСПЛАТНО</span>
             </div>
-            <p className="text-muted-foreground text-sm">Без скрытых платежей. 14 дней бесплатно</p>
+            <p className="text-muted-foreground text-sm">Без скрытых комиссий. Прозрачные условия</p>
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[2deg] border border-amber-100">
-              <span className="text-xs font-mono">ОДОБРЕНО</span>
+              <span className="text-xs font-mono">ПРОВЕРЕНО</span>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ const PricingSection = () => {
                 <span className="text-xs font-mono text-muted-foreground">{tier.name}</span>
                 <div className="flex items-baseline gap-1 mt-2">
                   <span className="text-4xl font-serif">{tier.price}</span>
-                  <span className="text-muted-foreground text-sm">/мес</span>
+                  {tier.price !== "Бесплатно" && <span className="text-muted-foreground text-sm">/мес</span>}
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{tier.description}</p>
               </div>
@@ -111,7 +111,7 @@ const PricingSection = () => {
                     : "border border-border hover:bg-secondary"
                 }`}
               >
-                НАЧАТЬ
+                ВЫБРАТЬ
               </button>
             </div>
           ))}

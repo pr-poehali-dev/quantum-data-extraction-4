@@ -6,9 +6,9 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <div className="w-6 h-6 border-2 border-foreground rounded-sm flex items-center justify-center">
-            <span className="text-xs font-mono">IP</span>
+            <span className="text-xs font-mono">МП</span>
           </div>
-          <span className="font-serif text-lg tracking-tight">InboxPilot</span>
+          <span className="font-serif text-lg tracking-tight">МаркетМест</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -24,7 +24,7 @@ const Header = () => {
         </nav>
 
         <button className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-          Начать
+          Начать продавать
         </button>
       </div>
     </header>
