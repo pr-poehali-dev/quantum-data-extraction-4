@@ -1,6 +1,11 @@
 import { ArrowRight, Package, ShoppingCart, Star, Truck, Users, Zap } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import SupplierModal from "@/components/SupplierModal";
 
 const CTASection = () => {
+  const [supplierOpen, setSupplierOpen] = useState(false);
+
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
@@ -36,17 +41,25 @@ const CTASection = () => {
               Присоединяйтесь к 15 000+ покупателям и 200+ поставщикам — найдите всё, что нужно, в одном месте.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+              <Link
+                to="/catalog"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
                 Перейти в каталог
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <button className="inline-flex items-center justify-center gap-2 border border-border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors">
+              </Link>
+              <button
+                onClick={() => setSupplierOpen(true)}
+                className="inline-flex items-center justify-center gap-2 border border-border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors"
+              >
                 Стать поставщиком
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <SupplierModal open={supplierOpen} onOpenChange={setSupplierOpen} />
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HeroSection = () => {
@@ -22,10 +23,13 @@ const HeroSection = () => {
               Сотни поставщиков, тысячи товаров. Покупайте напрямую — быстро, удобно, выгодно.
             </p>
 
-            <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+            <Link
+              to="/catalog"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
               Перейти в каталог
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           {/* Right visual */}
