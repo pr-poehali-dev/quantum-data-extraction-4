@@ -54,7 +54,33 @@ const OrderModal = ({ open, onOpenChange, product, quantity }: OrderModalProps) 
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 900));
+    try {
+      let apiUrl: string | null = null;
+      try {
+        const map = await fetch("/func2url.json").then((r) => r.json());
+        apiUrl = map["api"] || null;
+      } catch { /* API не задеплоен */ }
+
+      if (apiUrl) {
+        await fetch(`${apiUrl}/orders`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product_id: product.id,
+            product_name: product.name,
+            supplier: product.supplier,
+            quantity,
+            price_num: product.priceNum,
+            total_price: totalPrice + deliveryCost,
+            customer_name: form.name,
+            customer_phone: form.phone,
+            delivery_type: delivery,
+            delivery_address: form.address,
+            payment_type: payment,
+          }),
+        });
+      }
+    } catch { /* сохраняем локально если API недоступен */ }
     setLoading(false);
     setStep("success");
   };

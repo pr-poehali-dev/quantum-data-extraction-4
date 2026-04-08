@@ -1,0 +1,55 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "GET orders list",
+      "method": "GET",
+      "path": "/orders",
+      "expectedStatus": 200,
+      "expectedBody": {"orders": []},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST create order",
+      "method": "POST",
+      "path": "/orders",
+      "body": {
+        "product_id": 1,
+        "product_name": "Тестовый товар",
+        "supplier": "ТестПоставщик",
+        "quantity": 1,
+        "price_num": 1000,
+        "total_price": 1290,
+        "customer_name": "Иван Тестов",
+        "customer_phone": "+7 999 000 00 00",
+        "delivery_type": "courier",
+        "delivery_address": "г. Москва, ул. Тестовая, д. 1",
+        "payment_type": "card"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST supplier apply",
+      "method": "POST",
+      "path": "/supplier-apply",
+      "body": {
+        "name": "Иван Тестов",
+        "company": "ТестКомпания",
+        "email": "test@example.com",
+        "phone": "+7 999 000 00 00",
+        "category": "Электроника",
+        "message": "Хочу стать поставщиком"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

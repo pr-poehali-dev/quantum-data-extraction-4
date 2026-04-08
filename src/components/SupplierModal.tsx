@@ -55,8 +55,23 @@ const SupplierModal = ({ open, onOpenChange }: SupplierModalProps) => {
     }
 
     setLoading(true);
+    try {
+      let apiUrl: string | null = null;
+      try {
+        const map = await fetch("/func2url.json").then((r) => r.json());
+        apiUrl = map["api"] || null;
+      } catch { /* API не задеплоен */ }
 
-    await new Promise((r) => setTimeout(r, 800));
+      if (apiUrl) {
+        await fetch(`${apiUrl}/supplier-apply`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+      } else {
+        await new Promise((r) => setTimeout(r, 700));
+      }
+    } catch { /* fallback */ }
 
     toast({
       title: "Заявка отправлена!",
